@@ -1,0 +1,24 @@
+.delivery-with-econt-generate-waybill {
+    margin-top: 25px;
+}
+
+th.column-generate_waybill {
+    width: 14ch !important;
+}
+
+a.delivery-with-econt-check-waybill-status {
+    width: 25px;
+    padding: 2px !important;
+    position: relative;
+}
+
+a.delivery-with-econt-check-waybill-status > div.spinner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: 3px;
+}
+
+.econt-action-buttons {
+    float: right;
+}

@@ -1,0 +1,103 @@
+.d-none {
+  display: none;
+}
+
+#delivery_with_econt_calculate_shipping {
+  display: none;
+  position: absolute;
+  right: 0;  
+}
+
+#delivery_with_econt_iframe {
+  border: none; 
+  width:100%; 
+  height: 750px; 
+  overflow:hidden; 
+}
+
+#delivery_with_econt_calculation_container {
+  width: 100%;
+}
+
+#econt_detailed_shipping {
+  width: 50%;
+  margin-left: auto;
+  display: none;
+}
+
+.econt-loader {
+  background-image: url("/wp-content/plugins/deliver-with-econt/public/images/loader.gif") !important;
+  background-position: center 30% !important;
+  background-repeat: no-repeat !important;
+  background-color: white;
+  min-height: 500px;
+  z-index: 9999;
+}
+
+.econt-button {
+  position: relative;
+  z-index: 1;
+  font-weight: 300;
+  padding: 3px 10px;
+  background-color: #234182;
+  color: white;
+  margin-left: auto;
+  width: 50%;
+  /* margin-right: auto; */
+}
+
+.econt-button:hover {
+  background-color: #234182;
+  color: white;
+}
+
+.econt-alert {
+  display: none;
+}
+
+.econt-alert.active {
+  display: block !important;
+}
+
+#copy_shipping_data_button {
+  display: none;  
+  position: relative;
+  left: 5px;
+}
+
+#place_iframe_here {
+  padding-top: 10px;
+  background: white;
+  padding: 10px;
+  display: none;
+}
+
+@media screen and ( max-width: 575px ) {
+  #delivery_with_econt_calculate_shipping {
+    grid-template-columns: 85vw;
+  } 
+}
+
+@media screen and ( min-width: 576px ) {
+  #delivery_with_econt_calculate_shipping {
+    grid-template-columns: 80vw;
+  } 
+}
+
+@media screen and ( min-width: 768px ) {
+  #delivery_with_econt_calculate_shipping {
+    grid-template-columns: 40vw;
+    margin-left: 0;
+  } 
+}
+
+@media screen and ( min-width: 1200px ) {
+  #delivery_with_econt_iframe {
+    height: 800px;
+  }
+
+  #delivery_with_econt_calculate_shipping {
+    grid-template-columns: 480px;
+    margin-left: -25%;
+  } 
+}
