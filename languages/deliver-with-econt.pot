@@ -1,0 +1,82 @@
+# Copyright (C) 2019 Econt Express LTD.
+# This file is distributed under the same license as the Econt Delivery plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Econt Delivery 2.1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/deliver-with-econt\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-25T14:54:00+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.2.0\n"
+"X-Domain: deliver-with-econt\n"
+
+#. Plugin Name of the plugin
+#: bootstrap.php:191
+#: bootstrap.php:192
+#: includes/class-delivery-with-econt-shipping.php:68
+msgid "Econt Delivery"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://econt.com/developers/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Econt Shipping Module"
+msgstr ""
+
+#. Author of the plugin
+msgid "Econt Express LTD."
+msgstr ""
+
+#: includes/admin/class-delivery-with-econt-admin.php:21
+msgid "Waybill"
+msgstr ""
+
+#: includes/admin/class-delivery-with-econt-admin.php:58
+#: includes/admin/class-delivery-with-econt-admin.php:121
+msgid "Print"
+msgstr ""
+
+#: includes/admin/class-delivery-with-econt-admin.php:58
+#: includes/admin/class-delivery-with-econt-admin.php:121
+msgid "Generate"
+msgstr ""
+
+#: includes/class-delivery-with-econt-options.php:38
+#: includes/class-delivery-with-econt-options.php:39
+msgid "Delivery With Econt"
+msgstr ""
+
+#: includes/class-delivery-with-econt-options.php:82
+msgid "Econt Delivery Shop Settings"
+msgstr ""
+
+#: includes/class-delivery-with-econt-options.php:89
+msgid "ID Number"
+msgstr ""
+
+#: includes/class-delivery-with-econt-options.php:97
+msgid "Private Key"
+msgstr ""
+
+#: includes/class-delivery-with-econt-options.php:105
+msgid "Use Econt Demo Service"
+msgstr ""
+
+#: includes/class-delivery-with-econt-options.php:135
+msgid "Enter your settings below:"
+msgstr ""
+
+#: includes/class-delivery-with-econt-shipping.php:119
+msgid "Calculate price"
+msgstr ""
+
+#: includes/class-delivery-with-econt-shipping.php:120
+msgid "Copy delivery details"
+msgstr ""

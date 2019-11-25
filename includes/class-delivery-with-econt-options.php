@@ -35,8 +35,8 @@ class Delivery_With_Econt_Options
     public function add_plugin_page()
     {
         add_options_page(
-            __('Delivery With econt','delivery-with-econt'), 
-            __('Delivery With econt','delivery-with-econt'), 
+            __('Delivery With Econt','deliver-with-econt'), 
+            __('Delivery With Econt','deliver-with-econt'), 
             'manage_options', 
             'delivery-with-econt-settings', 
             array( $this, 'create_admin_page' )
@@ -79,14 +79,14 @@ class Delivery_With_Econt_Options
 
         add_settings_section(
             'setting_section_id', // ID
-            __('Econt Delivery Shop Settings', 'delivery-with-econt'), // Title
+            __('Econt Delivery Shop Settings', 'deliver-with-econt'), // Title
             array( $this, 'print_section_info' ), // Callback
             'delivery-with-econt-settings' // Page
         );  
 
         add_settings_field(
             'store_id', // ID
-            __('ID Number', 'delivery-with-econt'), // Title 
+            __('ID Number', 'deliver-with-econt'), // Title 
             array( $this, 'id_number_callback' ), // Callback
             'delivery-with-econt-settings', // Page
             'setting_section_id' // Section
@@ -94,7 +94,7 @@ class Delivery_With_Econt_Options
 
         add_settings_field(
             'private_key', 
-            __('Private Key', 'delivery-with-econt'), 
+            __('Private Key', 'deliver-with-econt'), 
             array( $this, 'title_callback' ), 
             'delivery-with-econt-settings', 
             'setting_section_id'
@@ -102,7 +102,7 @@ class Delivery_With_Econt_Options
         
         add_settings_field(
             'demo_service',
-            __('Use Econt Demo Service', 'delivery-with-econt'),
+            __('Use Econt Demo Service', 'deliver-with-econt'),
             array($this, 'demo_checkbox_callback'),
             'delivery-with-econt-settings',
             'setting_section_id'
@@ -132,7 +132,7 @@ class Delivery_With_Econt_Options
      */
     public function print_section_info()
     {
-        _e('Enter your settings below:', 'delivery-with-econt');
+        _e('Enter your settings below:', 'deliver-with-econt');
     }
 
     /** 

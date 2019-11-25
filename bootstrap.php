@@ -145,13 +145,23 @@ add_action( 'wp_ajax_nopriv_woocommerce_delivery_with_econt_get_orderinfo', 'del
 // end
 
 /**
- * Delivery with Econt checkout form renderer
+ * Delivery with Econt checkout form button renderer
  */
-add_action( 'woocommerce_after_shipping_rate', 'delivery_with_econt_render_form' );
+add_action( 'woocommerce_after_shipping_rate', 'delivery_with_econt_render_form_button' );
 
-function delivery_with_econt_render_form( $checkout )
+function delivery_with_econt_render_form_button( $checkout )
 {    
-    Delivery_With_Econt_Shipping::render_form( $checkout );
+    Delivery_With_Econt_Shipping::render_form_button( $checkout );
+}
+
+/**
+ * Delivery with Econt checkout form modal renderer
+ */
+add_action( 'woocommerce_after_checkout_form', 'delivery_with_econt_render_form_modal' );
+
+function delivery_with_econt_render_form_modal( $checkout )
+{    
+    Delivery_With_Econt_Shipping::render_form_modal( $checkout );
 }
 
 add_action('woocommerce_before_checkout_form', 'delivery_with_econt_enque_scripts_and_styles');
@@ -178,8 +188,8 @@ add_action( 'admin_menu', 'delivery_with_econt_add_pages' );
 function delivery_with_econt_add_pages() {
     // Add a new submenu under Settings:
     add_options_page(
-        __( 'Econt Delivery','delivery-with-econt' ), 
-        __( 'Econt Delivery','delivery-with-econt' ), 
+        __( 'Econt Delivery','deliver-with-econt' ), 
+        __( 'Econt Delivery','deliver-with-econt' ), 
         'manage_options', 
         'delivery-with-econt-settings', 
         'dwe_settings_page'
@@ -324,3 +334,8 @@ function delivery_with_econt_add_custom_html_to_order_details( $product_id )
 {
     Delivery_With_Econt_Admin::add_custom_html_to_order_details( $product_id );
 }
+
+function econt_delivery_load_plugin_textdomain() {
+    load_plugin_textdomain( 'deliver-with-econt', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'econt_delivery_load_plugin_textdomain' );

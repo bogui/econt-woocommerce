@@ -11,7 +11,8 @@
 #delivery_with_econt_iframe {
   border: none; 
   width:100%; 
-  height: 750px; 
+  height: 100vh;
+  max-height: 650px; 
   overflow:hidden; 
 }
 
@@ -20,8 +21,11 @@
 }
 
 #econt_detailed_shipping {
-  width: 50%;
-  margin-left: auto;
+  font-size: 10px;
+  font-weight: 100;
+  line-height: 10px;
+  color:#234182;
+  margin-bottom: 5px;
   display: none;
 }
 
@@ -35,14 +39,14 @@
 }
 
 .econt-button {
-  position: relative;
-  z-index: 1;
+  /* position: relative;
+  z-index: 1; */
   font-weight: 300;
   padding: 3px 10px;
   background-color: #234182;
   color: white;
-  margin-left: auto;
-  width: 50%;
+  /* margin-left: auto;
+  width: 50%; */
   /* margin-right: auto; */
 }
 
@@ -72,32 +76,55 @@
   display: none;
 }
 
-@media screen and ( max-width: 575px ) {
-  #delivery_with_econt_calculate_shipping {
-    grid-template-columns: 85vw;
-  } 
+.modal {
+  padding: 5px;
+}
+.modal button.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
-@media screen and ( min-width: 576px ) {
-  #delivery_with_econt_calculate_shipping {
-    grid-template-columns: 80vw;
-  } 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-@media screen and ( min-width: 768px ) {
-  #delivery_with_econt_calculate_shipping {
-    grid-template-columns: 40vw;
-    margin-left: 0;
-  } 
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 0 auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 800px;
 }
 
-@media screen and ( min-width: 1200px ) {
-  #delivery_with_econt_iframe {
-    height: 800px;
-  }
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  #delivery_with_econt_calculate_shipping {
-    grid-template-columns: 480px;
-    margin-left: -25%;
-  } 
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  position: initial;
+  padding: 0;
 }

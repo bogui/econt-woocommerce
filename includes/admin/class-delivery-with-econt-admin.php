@@ -18,7 +18,7 @@ class Delivery_With_Econt_Admin
             $new_columns[ $column_name ] = $column_info;
 
             if ( 'order_date' === $column_name ) {
-                $new_columns['generate_waybill column-primary'] = __( 'Waybill', 'delivery-with-econt' );
+                $new_columns['generate_waybill column-primary'] = __( 'Waybill', 'deliver-with-econt' );
             }
         }
     
@@ -36,8 +36,7 @@ class Delivery_With_Econt_Admin
 
 			$order    = wc_get_order( $post->ID );
 			$waybill_id = $order->get_meta('_order_waybill_id');
-    
-			if( $order->get_shipping_method() === 'Econt' && static::check_status( $order->get_status() ) ) {
+			if( reset( $order->get_items( 'shipping' ) )->get_method_id() === 'delivery_with_econt' && static::check_status( $order->get_status() ) ) {
 				if( WC()->version < '3.2.0' ) {
 					?>
 						<style>
@@ -56,7 +55,7 @@ class Delivery_With_Econt_Admin
 					data-waybill-id="<?php echo $waybill_id; ?>"
 					data-econt-currency="<?php echo $order->get_currency()?>"
 				>
-					<?php echo $waybill_id != '' ? 'Print' : 'Generate'; ?>					
+					<?php echo $waybill_id != '' ? __('Print', 'deliver-with-econt') : __('Generate', 'deliver-with-econt'); ?>					
 				</a>
 				<a href="#!" 
 					id="refresh-waybill-<?php echo $order->get_id(); ?>"
@@ -67,7 +66,7 @@ class Delivery_With_Econt_Admin
 					<span class="dashicons dashicons-update-alt"></span>
 					<div class="spinner" id="spiner-order-<?php echo $order->get_id(); ?>"></div>
 				</a>
-			<?php } else if ( $order->get_shipping_method() === 'Econt' && ! static::check_status( $order->get_status() )  && $waybill_id) {
+			<?php } else if ( reset( $order->get_items( 'shipping' ) )->get_method_id() === 'delivery_with_econt' && ! static::check_status( $order->get_status() )  && $waybill_id) {
 				?>
 					<a href="<?php echo DWEH()->get_tracking_url($waybill_id) ?>" target="_blank"><?php echo $waybill_id?></a>
 				<?php 
@@ -86,7 +85,7 @@ class Delivery_With_Econt_Admin
 		$prod = new WC_Order_Item_Product( $product_id );
 		$shipping = $prod->get_order()->get_items( 'shipping' );
 		foreach ($shipping as $key => $value) {
-			if( $value->get_name() != 'Econt' ) return false;
+			if( $value->get_method_id() != 'delivery_with_econt' ) return false;
 		}
 		
 		if( count( $prod->get_meta_data() ) ) { ?>
@@ -108,7 +107,7 @@ class Delivery_With_Econt_Admin
 					<div class="econt-tracking-info">
 						<?php
 						if ($waybill_id != '') { ?>
-							<h5><?php _e( 'Tracking info', 'delivery_with_econt' ); ?></h5>
+							<h5><?php _e( 'Tracking info', 'deliver_with_econt' ); ?></h5>
 							<a href="<?php echo DWEH()->get_tracking_url($waybill_id) ?>" target="_blank"><?php echo $waybill_id?></a>
 						<?php } ?>
 					</div>
@@ -119,7 +118,7 @@ class Delivery_With_Econt_Admin
 							data-order-id="<?php echo $order_id; ?>"
 							data-waybill-id="<?php echo $waybill_id; ?>"
 							data-econt-currency="<?php echo $currency?>"
-						><?php echo $waybill_id ? 'Print' : 'Generate'; ?></a>
+						><?php echo $waybill_id ? __('Print', 'deliver-with-econt') : __('Generate', 'deliver-with-econt'); ?></a>
 
 						<a href="#!" 
 							id="refresh-waybill-<?php echo $order_id; ?>"

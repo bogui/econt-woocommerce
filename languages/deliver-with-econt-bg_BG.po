@@ -1,0 +1,82 @@
+# Copyright (C) 2019 Econt Express LTD.
+# This file is distributed under the same license as the Econt Delivery plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Econt Delivery 2.1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/deliver-with-"
+"econt\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-25T14:23:28+02:00\n"
+"PO-Revision-Date: 2019-11-25 14:25+0200\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Domain: deliver-with-econt\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: bg_BG\n"
+
+#. Plugin Name of the plugin
+#: bootstrap.php:191 bootstrap.php:192
+#: includes/class-delivery-with-econt-shipping.php:68
+msgid "Econt Delivery"
+msgstr "Достави с Еконт"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://econt.com/developers/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Econt Shipping Module"
+msgstr "Модул за Достави с Еконт"
+
+#. Author of the plugin
+msgid "Econt Express LTD."
+msgstr "Еконт Експрес ООД"
+
+#: includes/admin/class-delivery-with-econt-admin.php:21
+msgid "Waybill"
+msgstr "Товарителница"
+
+#: includes/admin/class-delivery-with-econt-admin.php:59
+msgid "Print"
+msgstr "Отпечатай"
+
+#: includes/admin/class-delivery-with-econt-admin.php:59
+msgid "Generate"
+msgstr "Генерирай"
+
+#: includes/class-delivery-with-econt-options.php:38
+#: includes/class-delivery-with-econt-options.php:39
+msgid "Delivery With Econt"
+msgstr "Доставка с Еконт"
+
+#: includes/class-delivery-with-econt-options.php:82
+msgid "Econt Delivery Shop Settings"
+msgstr "Настройки за Достави с Еконт"
+
+#: includes/class-delivery-with-econt-options.php:89
+msgid "ID Number"
+msgstr "Идентификатор на магазина"
+
+#: includes/class-delivery-with-econt-options.php:97
+msgid "Private Key"
+msgstr "Частен ключ"
+
+#: includes/class-delivery-with-econt-options.php:105
+msgid "Use Econt Demo Service"
+msgstr "Използвай демо среда - http://delivery.demo.econt.com"
+
+#: includes/class-delivery-with-econt-options.php:135
+msgid "Enter your settings below:"
+msgstr "Въведи нужните настройки по-долу"
+
+#: includes/class-delivery-with-econt-shipping.php:119
+msgid "Calculate price"
+msgstr "Изчисли цена"
+
+#: includes/class-delivery-with-econt-shipping.php:120
+msgid "Copy delivery details"
+msgstr "Копирай данните за доставка"

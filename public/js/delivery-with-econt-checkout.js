@@ -69,7 +69,7 @@ jQuery( document ).ready( function (dwe) {
     }
 
     if ( selected_shipping_method === 'delivery_with_econt' ) {
-      dwe('input[value="delivery_with_econt"]').parent().css({position: 'relative', height: '50px'})
+      // dwe('input[value="delivery_with_econt"]').parent().css({position: 'relative', height: '50px'})
       toggleCalculationButtons()
 
       dwe("#delivery_with_econt_calculate_shipping").css( 'display', 'grid');
@@ -188,8 +188,9 @@ jQuery( document ).ready( function (dwe) {
     
     updateCart = true;    
     
-    dwe('#delivery_with_econt_calculation_container').addClass('econt-loader');
-    dwe('#place_iframe_here').css('z-index', '-1');          
+    closeModal()
+    // dwe('#delivery_with_econt_calculation_container').addClass('econt-loader');
+    // dwe('#place_iframe_here').css('z-index', '-1');          
     if ( updateCart ) {
       
       /**
@@ -235,12 +236,11 @@ jQuery( document ).ready( function (dwe) {
       dwe( 'body' ).trigger( 'update_checkout' );         
     }
 
-    dwe('#delivery_with_econt_calculation_container').removeClass('econt-loader');
-    dwe('#place_iframe_here').css('z-index', '1');
+    // dwe('#delivery_with_econt_calculation_container').removeClass('econt-loader');
+    // dwe('#place_iframe_here').css('z-index', '1');
   
   }, false);    
 });
-
 
 /**
  * when press the big black "Place Order" button, this code will do:
@@ -285,7 +285,8 @@ function showIframe(data, toggle = false)
   if ( toggle )
     toggleCalculationButtons()
   iframeContainer = jQuery( '#place_iframe_here' )
-  
+  jQuery('html').css({"overflow-y": "hidden"});
+  jQuery('#myModal').css({"display": "block"})
   iframe = '<iframe src="' + data.split( '"' ).join( '' ) + '" scrolling="yes" id="delivery_with_econt_iframe" name="econt_iframe_form"></iframe>'
   
   // empty the div if any oter instances of the iframe were generated
@@ -360,15 +361,14 @@ async function getDataFromForm(use_shipping, toggle = false)
 function startLoader()
 {
   jQuery('#delivery_with_econt_calculation_container').addClass('econt-loader');
-  jQuery('#place_iframe_here').css({'z-index': '-1', display: 'none'});
-  jQuery('input[value="delivery_with_econt"]').parent().css({"height": "950px", "width": "220px"})
+  jQuery('#place_iframe_here').css({'z-index': '-1', display: 'none'});  
 }
 
 function stopLoader()
 {
   setTimeout( function() {
     jQuery('#delivery_with_econt_calculation_container').removeClass('econt-loader');
-    jQuery('#place_iframe_here').css({'z-index': '1', "display": "block"});
+    jQuery('#place_iframe_here').css({'z-index': '1', "display": "block"});    
   }, 1000 )
 }
 
@@ -378,7 +378,7 @@ function showPriceInfo(gm)
   if ( checkIfShippingMethodIsEcont() && checkIfPaymentMethodIsCod() && gm != undefined ) {
     im.append(gm)
     im.css('display', 'block')
-    jQuery('input[value="delivery_with_econt"]').parent().css({"height": "120px", "width": "220px"})    
+    // jQuery('input[value="delivery_with_econt"]').parent().css({"height": "120px", "width": "220px"})    
   } else {
     im.css('display', 'none')    
   }
@@ -407,6 +407,13 @@ function checkIfPaymentMethodIsCod()
     return true;
   } 
   
-  return false;
-  
+  return false;  
 }
+
+function closeModal()
+{
+  jQuery('#myModal').css({'display': 'none'});
+  jQuery('html').css({'overflow-y': 'auto'});
+}
+
+jQuery('span.close').on('click', closeModal);

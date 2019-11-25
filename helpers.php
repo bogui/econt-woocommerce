@@ -53,13 +53,12 @@ class Delivery_With_Econt_Helper
         } else {
             $order = wc_get_order($local_order);
         }
-
-        if($order->get_shipping_method() != Delivery_With_Econt_Options::get_shipping_method_name()) return false;
-
+        if(reset( $order->get_items( 'shipping' ) )->get_method_id() != Delivery_With_Econt_Options::get_plugin_name()) return false;
+        
         $count = 0;
         $order_id = $order->get_id();
         $id = '';
-
+        
         if ( array_key_exists( 'econt_customer_info_id', $_COOKIE ) ) {
             $id = $_COOKIE['econt_customer_info_id'];
             update_post_meta( $order_id, '_customer_info_id', $id );
@@ -67,7 +66,7 @@ class Delivery_With_Econt_Helper
             setcookie("econt_shippment_price",'1000',time()-1);
         } else {
             $id = $order->get_meta('_customer_info_id');
-        }
+        }        
 
         $data = array(
             'id' => '', 

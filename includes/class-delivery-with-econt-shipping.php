@@ -30,7 +30,7 @@ class Delivery_With_Econt_Shipping extends WC_Shipping_Method
     {
         $this->id                 = Delivery_With_Econt_Options::get_plugin_name();
         $this->instance_id        = absint( $instance_id );
-        $this->title              = isset($this->settings['title']) ? $this->settings['title'] : __(self::TITLE, 'delivery-with-econt');
+        $this->title              = __(self::TITLE, 'delivery-with-econt');
         $this->method_title       = __(self::TITLE, 'delivery-with-econt');
         $this->method_description = __(self::DESCRIPTION, 'delivery-with-econt');
         $this->enabled            = isset($this->settings['enabled']) ? $this->settings['enabled'] : 'yes';
@@ -65,7 +65,7 @@ class Delivery_With_Econt_Shipping extends WC_Shipping_Method
 
         $rate = array(
             'id' => $this->id,
-            'label' => $this->title,
+            'label' => __('Econt Delivery', 'deliver-with-econt'),
             'cost' =>  $cost
         );
         $this->add_rate( $rate );
@@ -107,29 +107,46 @@ class Delivery_With_Econt_Shipping extends WC_Shipping_Method
         wp_send_json($url . 'customer_info.php?' . http_build_query($order, null, '&'));
     }
 
-    public static function render_form($checkout)
+    public static function render_form_button($checkout)
     {               
         if ( !is_checkout() || $checkout->id != 'delivery_with_econt' ) {
             return;
         }        
 
         ?>
-        <!-- <input type="hidden" class="input-hidden" name="delivery_with_econt_customer_id" id="delivery_with_econt_customer_id" value="<?php //echo WC()->checkout->get_value('delivery_with_econt_customer_id'); ?>">         -->
-        <div id="delivery_with_econt_calculate_shipping">
-            <span id="econt_detailed_shipping"></span>
-                        
-            <!-- ФОРМА ЗА ДОСТАВКА -->
-            <div id="delivery_with_econt_calculation_container">
-                <!-- Error messages -->
-                <div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-checkout econt-alert" style="display: none">
-                    <ul class="woocommerce-error" role="alert" style="margin-bottom: 5px;">
-                        <li id="econt_display_error_message"></li>                    
-                    </ul>
-                </div>
+        <span id="econt_detailed_shipping"></span>
+        <!-- Buttons -->
+        <button type="button" id="calculate_shipping_button" class="econt-button"><?= __('Calculate price', 'deliver-with-econt')?></button>
+        <button type="button" id="copy_shipping_data_button" class="econt-button"><?= __('Copy delivery details', 'deliver-with-econt')?></button>
+        <?php
+    }
 
-                <button type="button" id="calculate_shipping_button" class="econt-button">Изчисли цена за доставка</button>
-                <button type="button" id="copy_shipping_data_button" class="econt-button">Копирай данните за доставка</button>
-                <div class="iframe" id="place_iframe_here"></div>
+    public static function render_form_modal($checkout) {
+        if ( !is_checkout() ) {
+            return;
+        }        
+
+        ?>
+        <!-- Error messages -->
+        <div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-checkout econt-alert" style="display: none">
+            <ul class="woocommerce-error" role="alert" style="margin-bottom: 5px;">
+                <li id="econt_display_error_message"></li>                    
+            </ul>
+        </div>
+
+        <!-- <input type="hidden" class="input-hidden" name="delivery_with_econt_customer_id" id="delivery_with_econt_customer_id" value="<?php //echo WC()->checkout->get_value('delivery_with_econt_customer_id'); ?>">         -->
+        <div id="delivery_with_econt_calculate_shipping">           
+                        
+            <!-- Modal -->
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <!-- ФОРМА ЗА ДОСТАВКА -->
+                    <div id="delivery_with_econt_calculation_container">                            
+                        <div class="modal-body" id="place_iframe_here"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php                       
