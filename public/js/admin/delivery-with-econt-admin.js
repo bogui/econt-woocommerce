@@ -43,7 +43,7 @@ jQuery( document ).ready( function (dwe) {
         
         // console.log(params);
         
-        if( response ) {
+        if( response.shipmentNumber ) {
           dwe(a).text('Print')
           data = {
             "orderData": {
@@ -103,7 +103,7 @@ jQuery( document ).ready( function (dwe) {
       // setTimeout( () => {
         // if we have response and response waybill_id equals local - print the waybill
         // if ( params && Number( waybill_id ) === Number( params.shipmentNumber ) ) {
-        if ( response ) {
+        if ( response.shipmentNumber ) {
           data = {
             "order_id": order_id,
             "orderData": {
@@ -156,6 +156,12 @@ jQuery( document ).ready( function (dwe) {
   
   // Update the local waybill_id when recieved
   window.addEventListener( 'message', function( message ) {
+    /**
+     * check if this "message" comes from econt delivery system
+     */
+    if(message.origin.indexOf("//delivery") < 0 ){
+		  return;
+	  }
     if(message.data.event === 'cancel' ) {
       jQuery( '.modal-close' ).click()
     }else if( message.data.event === 'confirm' ) {
