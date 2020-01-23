@@ -43,7 +43,7 @@ jQuery( document ).ready( function (dwe) {
         
         // console.log(params);
         
-        if( response.shipmentNumber ) {
+        if( response && response.shipmentNumber ) {
           dwe(a).text('Print')
           data = {
             "orderData": {
@@ -103,7 +103,7 @@ jQuery( document ).ready( function (dwe) {
       // setTimeout( () => {
         // if we have response and response waybill_id equals local - print the waybill
         // if ( params && Number( waybill_id ) === Number( params.shipmentNumber ) ) {
-        if ( response.shipmentNumber ) {
+        if ( response && response.shipmentNumber ) {
           data = {
             "order_id": order_id,
             "orderData": {
