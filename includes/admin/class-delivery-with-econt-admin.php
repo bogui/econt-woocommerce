@@ -36,7 +36,10 @@ class Delivery_With_Econt_Admin
 
 			$order    = wc_get_order( $post->ID );
 			$waybill_id = $order->get_meta('_order_waybill_id');
-			if( reset( $order->get_items( 'shipping' ) )->get_method_id() === 'delivery_with_econt' && static::check_status( $order->get_status() ) ) {
+
+//			@todo Remove the first check.
+            if($order->has_shipping_method(Delivery_With_Econt_Options::get_plugin_name()) === false) return;
+			if( $order->has_shipping_method(Delivery_With_Econt_Options::get_plugin_name()) && static::check_status( $order->get_status() ) ) {
 				if( WC()->version < '3.2.0' ) {
 					?>
 						<style>
@@ -85,7 +88,7 @@ class Delivery_With_Econt_Admin
 		$prod = new WC_Order_Item_Product( $product_id );
 		$shipping = $prod->get_order()->get_items( 'shipping' );
 		foreach ($shipping as $key => $value) {
-			if( $value->get_method_id() != 'delivery_with_econt' ) return false;
+			if(  gettype($value) === 'boolean' || $value->get_method_id() != 'delivery_with_econt' ) return false;
 		}
 		
 		if( count( $prod->get_meta_data() ) ) { ?>

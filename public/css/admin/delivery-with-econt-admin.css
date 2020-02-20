@@ -7,6 +7,7 @@ th.column-generate_waybill {
 }
 
 a.delivery-with-econt-check-waybill-status {
+    height: 25px;
     width: 25px;
     padding: 2px !important;
     position: relative;

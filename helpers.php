@@ -53,11 +53,18 @@ class Delivery_With_Econt_Helper
         } else {
             $order = wc_get_order($local_order);
         }
-        if(reset( $order->get_items( 'shipping' ) )->get_method_id() != Delivery_With_Econt_Options::get_plugin_name()) return false;
+
+        if($order->has_shipping_method(Delivery_With_Econt_Options::get_plugin_name()) === false) return false;
         
         $count = 0;
         $order_id = $order->get_id();
         $id = '';
+
+        if (array_key_exists('_payment_method', $_POST)) {
+            $cod = sanitize_text_field($_POST['_payment_method']) === 'cod' ? true : '';
+        } else {
+            $cod = $order->get_payment_method() === 'cod' ? true : '';
+        }
         
         if ( array_key_exists( 'econt_customer_info_id', $_COOKIE ) ) {
             $id = $_COOKIE['econt_customer_info_id'];
@@ -73,10 +80,10 @@ class Delivery_With_Econt_Helper
             'orderNumber' => $order_id,
             'status' => $order->get_status(),
             'orderTime' => '',
-            'cod' => $order->get_payment_method() === 'cod' ? true : '',
+            'cod' => $cod,
             'partialDelivery' => '',
             'currency' => get_woocommerce_currency(),
-            'shipmentDescription' => '',
+            'shipmentDescription' => 'Описание: ',
             'shipmentNumber' => '',
             'customerInfo' => array( 
                 'id' => $id,
@@ -101,8 +108,10 @@ class Delivery_With_Econt_Helper
         foreach (count($items) ? $items['order_item_id'] : $order->get_items( 'line_item' ) as $_item) {
             if (count($items)) {
                 $item = new WC_Order_Item_Product(intval($_item));
+                $total_count = count($items['order_item_id']);
             } else {
                 $item = $_item;
+                $total_count = count($order->get_items('line_items'));
             }
 
             $product = $item->get_product();
@@ -111,9 +120,10 @@ class Delivery_With_Econt_Helper
             $count  = $item->get_quantity();
             $weight = floatval($product->get_weight());
             $quantity = intval($item->get_quantity());
+            $product_name = $product->get_name();
 
             array_push($data['items'], array( 
-                'name' => $product->get_name(),
+                'name' => $product_name,
                 'SKU' => $product->get_sku(),
                 'URL' => '',
                 'count' => $quantity,
@@ -122,6 +132,11 @@ class Delivery_With_Econt_Helper
                 'totalPrice' => $price,
                 'totalWeight' => $weight * $quantity
             ));
+
+            $data['shipmentDescription'] .= $product_name;
+            if ($count < $total_count) {
+                $data['shipmentDescription'] .= ', ';
+            }
             $count += 1;
         }
 
@@ -143,6 +158,7 @@ class Delivery_With_Econt_Helper
         $response = curl_exec($curl);
 
         $parsed_error = json_decode($response, true);
+
         if( $parsed_error['type'] != '' ) {
             $message =[];            
             $message['text'] = $parsed_error['message'];

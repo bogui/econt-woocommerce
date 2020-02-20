@@ -1,17 +1,12 @@
 jQuery( document ).ready( function (dwe) {    
 
+  let locale  
   let global_waybill_id
   let global_order_id
   // let params
   let update = false
-  
-  /** @todo remove */
-  // let e = function() { 
-  //   //  add click event listener for the print/generate button
-  //   dwe( document ).on( "click", ".delivery-with-econt-generate-waybill-button", onPreview );
-  //   // Add click event listener for the refresh button
-  //   dwe( document ).on( "click", ".delivery-with-econt-check-waybill-status", refresh );
-  // }
+
+  locale = getCurrentLocale()
 
   dwe( ".delivery-with-econt-generate-waybill-button" ).click( onPreview );
   dwe( ".delivery-with-econt-check-waybill-status" ).click( refresh );
@@ -30,7 +25,7 @@ jQuery( document ).ready( function (dwe) {
     
     private_key = atob( private_key.content )
 
-    s.css('visibility', 'hidden')        
+    s.css('visibility', 'hidden')
     dwe(i).addClass('is-active')
 
 
@@ -56,7 +51,7 @@ jQuery( document ).ready( function (dwe) {
           update_waybill( JSON.stringify( data ) )
           update = true
         } else {
-          dwe(a).text( 'Generate' )
+          dwe(a).text( locale === 'bg' ? 'Генерирай' : 'Generate' )
           dwe( '.econt-tracking-info' ).css( 'display', 'none' )
           data = {
             "order_id": order_id,
@@ -115,7 +110,7 @@ jQuery( document ).ready( function (dwe) {
           }
           u = update_waybill( JSON.stringify( data ) )
           u.then( () => {                        
-            dwe( t ).text( 'Print' )
+            dwe( t ).text( locale === 'bg' ? 'Принтирай' : 'Print' )
             window.open( response.pdfURL, '_blank' )
           })
         } else {
@@ -233,5 +228,9 @@ jQuery( document ).ready( function (dwe) {
         }
       }
     })
+  }
+
+  function getCurrentLocale() {
+    return dwe('html').get(0).lang.split('-')[0];
   }
 });
