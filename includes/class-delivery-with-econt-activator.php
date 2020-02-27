@@ -75,7 +75,7 @@ class Delivery_With_Econt_Activator {
 		return (object) array(
 			'repo' => 'master',
 			'environment' => 'production', // staging or production
-			'version' => '2.2.7',
+			'version' => '2.3.8',
 			'php_version' => phpversion(),
 			'wp_version' => ( empty( $wp_version ) ? 'Unknown' : $wp_version ),
 			'wc_version' => function_exists( 'WC' ) ? WC()->version : null,

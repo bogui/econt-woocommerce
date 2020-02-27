@@ -1,13 +1,26 @@
+Version 2.3.8 - Fixed shipping and billing checks. Added support to change payment method in admin and reflect it in Econt Delivery. Added description to package generation method.
+Added language to js scripts. Added release log. Early added software mark.
+
 Version 2.2.7 - Added response check - fixed the error from parsed response. Updated version.
+
 Version 2.2.6 - Econt Delivery Api response update.
+
 Version 2.2.5 - Change frontend (again) from grid view to modal window. Added language support.
+
 Version 2.1.4 - Added Coupons support, woocommerce version compatibility: low - from 3.0 hight - to 3.7
+
 Version 2.0 - Fixead multiple issues. Updated field names. Changed styles.
-Version 1.1.5 - Fixed js logic on frontend. Updated mid version
+
+Version 1.1.5 - Fixed js logic on frontend. Updated mid version.
+
 Version 1.0.5 - Reset loader and fix some strange error single order view.
+
 Version 1.0.4 - Fixed admin_path.
+
 Version 1.0.3 - Get dynamic currency symbol. Fix "Authodization" header issue.
+
 Version 1.0.2 - Small bugfixes and frontend stuff.
-Version 1.0.1 - Small bugfixes and frontend stuff
+
+Version 1.0.1 - Small bugfixes and frontend stuff.
 
 Version 1.0 - Production ready version

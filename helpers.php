@@ -85,6 +85,7 @@ class Delivery_With_Econt_Helper
             'currency' => get_woocommerce_currency(),
             'shipmentDescription' => 'Описание: ',
             'shipmentNumber' => '',
+            'clientSoftware' => 'DeliveryWooCommerce_v1',
             'customerInfo' => array( 
                 'id' => $id,
                 'name' => '',
