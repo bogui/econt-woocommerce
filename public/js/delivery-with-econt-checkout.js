@@ -73,6 +73,8 @@ jQuery( document ).ready( function (dwe) {
       toggleCalculationButtons()
 
       dwe("#delivery_with_econt_calculate_shipping").css( 'display', 'grid');
+    } else {
+      dwe("#econt_delivery_calculate_buttons").css('display', 'none');
     }
     
     dwe( '#place_order' ).on( 'click', function( e ){                
@@ -372,15 +374,16 @@ function stopLoader()
   }, 1000 )
 }
 
-function showPriceInfo(gm)
+function showPriceInfo(global_message)
 {    
-  let im = jQuery( '#econt_detailed_shipping' )
-  if ( checkIfShippingMethodIsEcont() && checkIfPaymentMethodIsCod() && gm != undefined ) {
-    im.append(gm)
-    im.css('display', 'block')
+  let im = jQuery( '#econt_detailed_shipping' );
+  im.empty();
+  if ( checkIfShippingMethodIsEcont() && checkIfPaymentMethodIsCod() && global_message != undefined ) {    
+    im.append(global_message);
+    im.css('display', 'block');
     // jQuery('input[value="delivery_with_econt"]').parent().css({"height": "120px", "width": "220px"})    
   } else {
-    im.css('display', 'none')    
+    im.css('display', 'none');
   }
   
 }

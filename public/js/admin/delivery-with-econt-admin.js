@@ -136,7 +136,7 @@ jQuery( document ).ready( function (dwe) {
                 e.success&&(
                   t.data( "order-data", e.data ),
                   dwe( this ).WCBackboneModal({
-                    template:"dwe-modal ",
+                    template:"dwe-modal",
                     variable:e.data
                   })
                 )

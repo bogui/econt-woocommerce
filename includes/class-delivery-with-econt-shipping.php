@@ -116,8 +116,10 @@ class Delivery_With_Econt_Shipping extends WC_Shipping_Method
         ?>
         <span id="econt_detailed_shipping"></span>
         <!-- Buttons -->
-        <button type="button" id="calculate_shipping_button" class="econt-button"><?= __('Calculate price', 'deliver-with-econt')?></button>
-        <button type="button" id="copy_shipping_data_button" class="econt-button"><?= __('Copy delivery details', 'deliver-with-econt')?></button>
+        <div id="econt_delivery_calculate_buttons">
+            <button type="button" id="calculate_shipping_button" class="econt-button"><?= __('Calculate price', 'deliver-with-econt')?></button>
+            <button type="button" id="copy_shipping_data_button" class="econt-button"><?= __('Copy delivery details', 'deliver-with-econt')?></button>
+        </div>
         <?php
     }
 
